@@ -11,6 +11,7 @@
 #define SEEN 1
 #define RELEASED 2
 
+//Criar circulo
 struct Circle
 {
     int posX;
