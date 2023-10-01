@@ -105,20 +105,20 @@ int main()
             //move o circulo pra direita sempre que precionada a tecla right (setinha pra direita)
             if (key[ALLEGRO_KEY_D] || key[ALLEGRO_KEY_RIGHT])
             {
-                circle.posX += 7.5;
+                circle.posX += 30;
             }
             //move o circulo pra esquerda sempre que precionada a tecla left (setinha pra esquerda)
             if (key[ALLEGRO_KEY_A] || key[ALLEGRO_KEY_LEFT])
             {
-                circle.posX -= 7.5; //controla a velocidade do circulo
+                circle.posX -= 30; //controla a velocidade do circulo
             }
             if (key[ALLEGRO_KEY_W] || key[ALLEGRO_KEY_UP])
             {
-                circle.posY -= 7.5;
+                circle.posY -= 30;
             }
             if (key[ALLEGRO_KEY_S] || key[ALLEGRO_KEY_DOWN])
             {
-                circle.posY += 7.5;
+                circle.posY += 30;
             }
             if (circle.posX + 18 >= 640) {
                 circle.posX -= 6.2;
