@@ -133,15 +133,14 @@ int main()
                 circle.posY += 8.2;
             }
 
-            //DRAW
-            al_clear_to_color(al_map_rgb(0, 0, 0));//limpa a tela a recolorindo toda de preto
 
-            al_draw_filled_circle(circle.posX, circle.posY, circle.raio, al_map_rgb(0, 0, 255));//desenha o circulo na tela
-            al_draw_textf(font, al_map_rgb(255, 255, 255), DISP_W / 100, 30, 0, "Voce clicou na posicao x: %d, y %d", mouseClickPositionX, mouseClickPositionY);//escreve na tela a posicao do mouse quando clicar na tela
-
-            //al_draw_textf(font, al_map_rgb(255, 255, 255), DISP_W / 100, 30, 0, "Voce clicou na posicao x: %d y: %d", mouseClickPositionX, mouseClickPositionY);
-
-            al_flip_display();//atualiza a tela
+        if (nerdola.time > 12) {
+            nerdola.current_frame_y = nerdola.altura * 4;
+            nerdola.frame += 0.1f;
+            if (nerdola.frame > 2) {
+                nerdola.frame -= 2;
+            }
+        };
 
 
 
@@ -159,4 +158,4 @@ int main()
 
 
     return 0;
-}
+}
