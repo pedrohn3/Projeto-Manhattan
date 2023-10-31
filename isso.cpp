@@ -45,7 +45,7 @@ int indice_elem_coletados = 0;
 
 float camera_x = 0;//atualiza camera x
 float camera_y = 0;//atualiza camera y
-float zoom_map = 5;//Dá zoom
+float zoom_map = 1;//Dá zoom
 int tamanho_map_x = 1000;//Tamanho do mapa x
 int tamanho_map_y = 600;//Tamanho do mapa y
 int tamanho_nerd_x = 65;//Tamanho x do protagonista
@@ -96,6 +96,12 @@ void iniciar_elementos() {
     arrayElementos[INDICE_ELEM_SODIO].current_frame_y = 0;
     arrayElementos[INDICE_ELEM_SODIO].time = 0;
     arrayElementos[INDICE_ELEM_SODIO].ativo = false;
+}
+
+void craft() {
+    if (1 == 2) {
+
+    }
 }
 
 void destruir_elementos() {
@@ -270,4 +276,3 @@ int main() {
 
     return 0;
 }
-
