@@ -1,4 +1,5 @@
 ﻿  isso.cpp
 C:\Users\keli_\OneDrive\Área de Trabalho\Projeto-Manhattan\isso.cpp(10,10): warning C4067: tokens inesperados após diretiva de pré-processador - esperado um newline
 C:\Users\keli_\OneDrive\Área de Trabalho\Projeto-Manhattan\isso.cpp(11,10): warning C4067: tokens inesperados após diretiva de pré-processador - esperado um newline
+  Main.c
   ProjetoManhattan.vcxproj -> C:\Users\keli_\OneDrive\Área de Trabalho\Projeto-Manhattan\x64\Debug\ProjetoManhattan.exe
