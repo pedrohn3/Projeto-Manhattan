@@ -98,12 +98,6 @@ void iniciar_elementos() {
     arrayElementos[INDICE_ELEM_SODIO].ativo = false;
 }
 
-void craft() {
-    if (1 == 2) {
-
-    }
-}
-
 void destruir_elementos() {
     for (int indice = 0; indice < SIZE_MAX_ELEMENTOS; indice++) {
         al_destroy_bitmap(arrayElementos[indice].bitmap);
@@ -139,14 +133,6 @@ void desenhar_cena(ALLEGRO_BITMAP* bg, ALLEGRO_BITMAP* sprite, personagem nerdol
                     (arrayElementos[indice].pos_y - camera_y),
                     0);
             }
-
-            // Se o personagem estiver no mesmo local do elemento
-            //  Vai colocar elemento no personagem
-            // nerdola.elementos_coletados[indice_elem_coletados] = arrayElementos[indice].id;
-            // indice_elem_coletados++;
-            // arrayElementos[indice].ativo = false;
-            // aprender a ver certinho o negocio do x e y
-
         }
     }
 }
@@ -155,7 +141,6 @@ void desenhar_cena(ALLEGRO_BITMAP* bg, ALLEGRO_BITMAP* sprite, personagem nerdol
 void atualizar_camera() {
     camera_x = nerdola.pos_x - tamanho_map_x / 2;
     camera_y = nerdola.pos_y - tamanho_map_y / 2;
-    
 }
 
 
