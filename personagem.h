@@ -5,6 +5,5 @@ struct personagem {
 	int pos_x;
 	int pos_y;
 	int current_frame_y;
-	int time;
-	int elementos_coletados[10];
+	int time;	
 };
