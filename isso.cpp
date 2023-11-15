@@ -119,8 +119,8 @@ void iniciar_elementos() {
     arrayElementos[INDICE_ELEM_CLORO].bitmap = al_load_bitmap("./cloro.png");
     arrayElementos[INDICE_ELEM_CLORO].largura = 54;
     arrayElementos[INDICE_ELEM_CLORO].altura = 182;
-    arrayElementos[INDICE_ELEM_CLORO].pos_x = 0;
-    arrayElementos[INDICE_ELEM_CLORO].pos_y = 0;
+    arrayElementos[INDICE_ELEM_CLORO].pos_x = 292;
+    arrayElementos[INDICE_ELEM_CLORO].pos_y = 267;
     arrayElementos[INDICE_ELEM_CLORO].contador = 0;
     arrayElementos[INDICE_ELEM_CLORO].ativo = true;
     arrayElementos[INDICE_ELEM_CLORO].capturado = false;
@@ -284,43 +284,37 @@ void capturação() {
     pos_character_y = nerdola.pos_y;
     pos_character_y_mais_alt = nerdola.pos_y + tamanho_nerd_y;
 
-    system("cls");
+
 
 
     //Varre o array para ver como está indo o bicho
     for (int indice = 0; indice < SIZE_MAX_ELEMENTOS; indice++) {
-        // Se o elemento esta ativo ?
-        if (arrayElementos[indice].ativo == true) {
-            // Se o elemento NAO foi capturado ?
-            if (arrayElementos[indice].capturado == false) {
+        // Ve o elemento esta ativo e ve o elemento NAO foi capturado
+        if (arrayElementos[indice].ativo == true && arrayElementos[indice].capturado == false) {
 
-                // Calcula Quadrado do Elemento
-                pos_element_x = arrayElementos[indice].pos_x;
-                pos_element_x_mais_larg = arrayElementos[indice].pos_x + arrayElementos[indice].largura;
-                pos_element_y = arrayElementos[indice].pos_y;
-                pos_element_y_mais_alt = arrayElementos[indice].pos_y + arrayElementos[indice].altura;
+            // Calcula Quadrado do Elemento
+            pos_element_x = arrayElementos[indice].pos_x;
+            pos_element_x_mais_larg = arrayElementos[indice].pos_x + arrayElementos[indice].largura;
+            pos_element_y = arrayElementos[indice].pos_y;
+            pos_element_y_mais_alt = arrayElementos[indice].pos_y + arrayElementos[indice].altura;
 
-                // Se algum ponto do quadrado do personagem estiver dentro do quadrado do elemento ?
-                if (
-                    (
-                        ((pos_character_x >= pos_element_x) && (pos_character_x <= pos_element_x_mais_larg)) ||
-                        ((pos_character_x_mais_larg >= pos_element_x) && (pos_character_x_mais_larg <= pos_element_x_mais_larg))
-                        ) && (
-                        ((pos_character_y >= pos_element_y) && (pos_character_y <= pos_element_y_mais_alt)) ||
-                        ((pos_character_y_mais_alt >= pos_element_y) && (pos_character_y_mais_alt <= pos_element_y_mais_alt))
-                        )
-                    )
-                {
-                    arrayElementos[indice].ativo = false;
-                    arrayElementos[indice].capturado = true;
-                    arrayElementos[indice].contador += 1;
-                }
-            }
-            // Remover os elementos capturados
-            for (int i = 0; i < SIZE_MAX_ELEMENTOS; ++i) {
-                if (arrayElementos[i].capturado) {
-                    arrayElementos[i].ativo = false; // Desativa o elemento
-                }
+            // Se algum ponto do quadrado do personagem estiver dentro do quadrado do elemento ?
+            // (persongem x + largura = pos_elem_x || pos_personagem_x = pos_x_elem + largura_elem)&& (personagem_pos_y + nerdola.altura = pos_elem_y || personagem_pos_y + nerdola.altura = pos_elem_y +altura_elem)
+            //   
+            if (
+                /*pos_character_x == pos_element_x*/
+                
+                (((pos_character_x >= pos_element_x) && (pos_character_x <= pos_element_x_mais_larg)) ||
+                ((pos_character_x_mais_larg >= pos_element_x) && (pos_character_x_mais_larg <= pos_element_x_mais_larg))
+                ) && (
+                ((pos_character_y >= pos_element_y) && (pos_character_y <= pos_element_y_mais_alt)) ||
+                ((pos_character_y_mais_alt >= pos_element_y) && (pos_character_y_mais_alt <= pos_element_y_mais_alt))
+                )
+                )
+            {
+                arrayElementos[indice].ativo = false;
+                arrayElementos[indice].capturado = true;
+                arrayElementos[indice].contador += 1;
             }
         }
     }
@@ -412,7 +406,7 @@ int main() {
     al_set_window_position(display, 200, 200);
     al_set_window_title(display, "Reino da Alquimia");
 
-    ALLEGRO_FONT* font = al_create_builtin_font();
+    font = al_create_builtin_font();
     ALLEGRO_TIMER* timer = al_create_timer(1.0 / 20.0);
 
     ALLEGRO_BITMAP* sprite = al_load_bitmap("./nerdola.png");
