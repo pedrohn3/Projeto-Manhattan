@@ -65,6 +65,8 @@ struct personagem nerdola;//Struct personagem
 elementos arrayElementos[SIZE_MAX_ELEMENTOS];
 
 
+//chama Função iniciar elemento
+
 //Usado na camera
 float camera_x = 0;//atualiza camera x
 float camera_y = 0;//atualiza camera y
@@ -86,6 +88,12 @@ int tamanho_map_x = 1000;//Tamanho do mapa x
 int tamanho_map_y = 600;//Tamanho do mapa y
 int tamanho_nerd_x = 58;//Tamanho x do protagonista
 int tamanho_nerd_y = 63;//Tamanho y do protagonista
+
+int tam_map_max_x = 1920;//Tamanho maximo na horizontal
+int tam_map_max_y = 1882;//Tamanho maximo na vertical
+int num_rand_x = 0;//Numero aleatorio x
+int num_rand_y = 0;//Numero aleatorio y
+
 
 
 
@@ -112,22 +120,24 @@ void atualizar_camera() {
 
 void iniciar_elementos() {
 
-    if(1 == 1){
+    srand(time(NULL));
+    int ini = 0;
+    if(ini == 1 || ini == 0){
     //Inicia Elemento cloro
     arrayElementos[INDICE_ELEM_CLORO].id = INDICE_ELEM_CLORO;
     memcpy((void*)arrayElementos[INDICE_ELEM_CLORO].nome, (void*)"Cloro", sizeof("Cloro"));
     arrayElementos[INDICE_ELEM_CLORO].bitmap = al_load_bitmap("./cloro.png");
     arrayElementos[INDICE_ELEM_CLORO].largura = 54;
     arrayElementos[INDICE_ELEM_CLORO].altura = 182;
-    arrayElementos[INDICE_ELEM_CLORO].pos_x = 292;
-    arrayElementos[INDICE_ELEM_CLORO].pos_y = 267;
+    arrayElementos[INDICE_ELEM_CLORO].pos_x = 300;
+    arrayElementos[INDICE_ELEM_CLORO].pos_y = 300;
     arrayElementos[INDICE_ELEM_CLORO].contador = 0;
     arrayElementos[INDICE_ELEM_CLORO].ativo = true;
     arrayElementos[INDICE_ELEM_CLORO].capturado = false;
     }
     //Cloro    
     
-    if(2 == 2){
+    if(ini == 12 || ini == 0){
     //Inicia Elemento Sodio
     arrayElementos[INDICE_ELEM_SODIO].id = INDICE_ELEM_SODIO;
     memcpy((void*)arrayElementos[INDICE_ELEM_SODIO].nome, (void*)"Sodio", sizeof("Sodio"));
@@ -142,7 +152,7 @@ void iniciar_elementos() {
     }
     //sodio
 
-    if (3 == 3) {
+    if (ini == 3 || ini == 0) {
         //Inicia Elemento Oxigênio
         arrayElementos[INDICE_ELEM_OXIGENIO].id = INDICE_ELEM_OXIGENIO;
         memcpy((void*)arrayElementos[INDICE_ELEM_OXIGENIO].nome, (void*)"OXIGENIO", sizeof("OXIGENIO"));
@@ -157,7 +167,7 @@ void iniciar_elementos() {
     }
     //Oxigênio
 
-    if (4 == 4) {
+    if (ini == 4 || ini == 0) {
         //Inicia Elemento HIDROGENIO
         arrayElementos[INDICE_ELEM_HIDROGENIO].id = INDICE_ELEM_HIDROGENIO;
         memcpy((void*)arrayElementos[INDICE_ELEM_HIDROGENIO].nome, (void*)"HIDROGENIO", sizeof("HIDROGENIO"));
@@ -172,7 +182,7 @@ void iniciar_elementos() {
     }
     //HIDROGENIO
 
-    if (5 == 5) {
+    if (ini == 5 || ini == 0) {
         //Inicia Elemento NITROGENIO
         arrayElementos[INDICE_ELEM_NITROGENIO].id = INDICE_ELEM_NITROGENIO;
         memcpy((void*)arrayElementos[INDICE_ELEM_NITROGENIO].nome, (void*)"NITROGENIO", sizeof("NITROGENIO"));
@@ -187,7 +197,7 @@ void iniciar_elementos() {
     }
     //NITROGENIO
 
-    if (6 == 6) {
+    if (ini == 6 || ini == 0) {
         //Inicia Elemento COBRE
         arrayElementos[INDICE_ELEM_COBRE].id = INDICE_ELEM_COBRE;
         memcpy((void*)arrayElementos[INDICE_ELEM_COBRE].nome, (void*)"COBRE", sizeof("COBRE"));
@@ -202,7 +212,7 @@ void iniciar_elementos() {
     }
     //COBRE
 
-    if (7 == 7) {
+    if (ini == 7 || ini == 0) {
         //Inicia Elemento ENXOFRE
         arrayElementos[INDICE_ELEM_ENXOFRE].id = INDICE_ELEM_ENXOFRE;
         memcpy((void*)arrayElementos[INDICE_ELEM_ENXOFRE].nome, (void*)"ENXOFRE", sizeof("ENXOFRE"));
@@ -217,7 +227,7 @@ void iniciar_elementos() {
     }
     //ENXOFRE
 
-    if (8 == 8) {
+    if (ini == 8 || ini == 0) {
         //Inicia Elemento SAL
         arrayElementos[INDICE_ELEM_SAL].id = INDICE_ELEM_SAL;
         memcpy((void*)arrayElementos[INDICE_ELEM_SAL].nome, (void*)"SAL", sizeof("SAL"));
@@ -232,7 +242,7 @@ void iniciar_elementos() {
     }
     //SAL
 
-    if (9 == 9) {
+    if (ini == 9 || ini == 0) {
         //Inicia Elemento BOMBA_HIDRO
         arrayElementos[INDICE_ELEM_BOMBA_HIDRO].id = INDICE_ELEM_BOMBA_HIDRO;
         memcpy((void*)arrayElementos[INDICE_ELEM_BOMBA_HIDRO].nome, (void*)"BOMBA_HIDRO", sizeof("BOMBA_HIDRO"));
@@ -247,7 +257,7 @@ void iniciar_elementos() {
     }
     //BOMBA_HIDRO
 
-    if (10  == 10) {
+    if (ini == 10 || ini == 0) {
         //Inicia Elemento AGUA
         arrayElementos[INDICE_ELEM_AGUA].id = INDICE_ELEM_AGUA;
         memcpy((void*)arrayElementos[INDICE_ELEM_AGUA].nome, (void*)"AGUA", sizeof("AGUA"));
@@ -262,7 +272,7 @@ void iniciar_elementos() {
     }
     //AGUA
 
-    if (11 == 11) {
+    if (ini == 11 || ini == 0) {
         //Inicia Elemento FOGO
         arrayElementos[INDICE_ELEM_FOGO].id = INDICE_ELEM_FOGO;
         memcpy((void*)arrayElementos[INDICE_ELEM_FOGO].nome, (void*)"FOGO", sizeof("FOGO"));
@@ -301,9 +311,7 @@ void capturação() {
             // Se algum ponto do quadrado do personagem estiver dentro do quadrado do elemento ?
             // (persongem x + largura = pos_elem_x || pos_personagem_x = pos_x_elem + largura_elem)&& (personagem_pos_y + nerdola.altura = pos_elem_y || personagem_pos_y + nerdola.altura = pos_elem_y +altura_elem)
             //   
-            if (
-                /*pos_character_x == pos_element_x*/
-                
+            if (            
                 (((pos_character_x >= pos_element_x) && (pos_character_x <= pos_element_x_mais_larg)) ||
                 ((pos_character_x_mais_larg >= pos_element_x) && (pos_character_x_mais_larg <= pos_element_x_mais_larg))
                 ) && (
@@ -350,8 +358,6 @@ void craft() {
 
 }
 
-
-
 void desenhar_cena(ALLEGRO_BITMAP* bg, ALLEGRO_BITMAP* sprite, personagem nerdola, elementos arrayElem[]) {
     //Desenha o fundo do jogo, o mapa e o nerdola 
 
@@ -360,20 +366,21 @@ void desenhar_cena(ALLEGRO_BITMAP* bg, ALLEGRO_BITMAP* sprite, personagem nerdol
 
 
     //desenha a cena
-    al_draw_scaled_bitmap(bg, 0, 0, 1920, 1882, -camera_x, -camera_y, 1920 * zoom_map, 1882 * zoom_map, 0);
+    al_draw_scaled_bitmap(bg, 0, 0, tam_map_max_x, tam_map_max_y, -camera_x, -camera_y, tam_map_max_x * zoom_map, tam_map_max_y * zoom_map, 0);
 
 
     //desenha o personagem
     al_draw_bitmap_region(sprite, nerdola.largura * (int)nerdola.frame, nerdola.current_frame_y, nerdola.largura, nerdola.altura, (nerdola.pos_x - camera_x), (nerdola.pos_y - camera_y), 0);
 
 
+   
     //desenha elementos
     for (int indice = 0; indice < SIZE_MAX_ELEMENTOS; indice++) {
         if (arrayElementos[indice].ativo == true) {
-            al_draw_bitmap(arrayElementos[INDICE_ELEM_CLORO].bitmap, 300 - camera_x, 300 - camera_y, 0);
+            al_draw_bitmap(arrayElementos[INDICE_ELEM_CLORO].bitmap, arrayElementos[indice].pos_x - camera_x, arrayElementos[indice].pos_y - camera_y, 0);
         }
 
-        float pos_text_y = 10;
+        float pos_text_y = 50;
         for (int indice = 0; indice < SIZE_MAX_ELEMENTOS; indice++) {
             // Se o elemento esta capturado
             if (arrayElementos[indice].capturado == true) {
@@ -382,6 +389,18 @@ void desenhar_cena(ALLEGRO_BITMAP* bg, ALLEGRO_BITMAP* sprite, personagem nerdol
             }
         }
     }
+}
+
+void num_rand() {
+    srand(time(NULL));
+    for (int indice = 0; indice < SIZE_MAX_ELEMENTOS; indice ++) {
+        if (arrayElementos[indice].ativo == true) {
+            arrayElementos[indice].pos_x = rand() % tam_map_max_x + 1;
+            arrayElementos[indice].pos_y = rand() % tam_map_max_y + 1;
+        }
+    }
+
+
 }
 
 void destruir_elementos() {
@@ -420,7 +439,7 @@ int main() {
     al_start_timer(timer);
 
     iniciar_personagem();
-
+   
     iniciar_elementos();
 
     //Loop
@@ -435,7 +454,7 @@ int main() {
             break;
         }
 
-        else if ((event.keyboard.keycode == ALLEGRO_KEY_RIGHT || event.keyboard.keycode == ALLEGRO_KEY_D) /* && (nerdola.pos_x < 1920)*/) {
+        else if ((event.keyboard.keycode == ALLEGRO_KEY_RIGHT || event.keyboard.keycode == ALLEGRO_KEY_D)  && (nerdola.pos_x + tamanho_nerd_x < tam_map_max_x)) {
             //Right
             nerdola.current_frame_y = nerdola.altura;
             nerdola.pos_x += 10;
@@ -455,7 +474,7 @@ int main() {
             }
             nerdola.time = 0;
         }
-        else if ((event.keyboard.keycode == ALLEGRO_KEY_DOWN || event.keyboard.keycode == ALLEGRO_KEY_S) /* && (nerdola.pos_y < 1882)*/) {
+        else if ((event.keyboard.keycode == ALLEGRO_KEY_DOWN || event.keyboard.keycode == ALLEGRO_KEY_S) && (nerdola.pos_y + tamanho_nerd_y < tam_map_max_y)) {
             //Down
             nerdola.current_frame_y = 0;
             nerdola.pos_y += 10;
@@ -495,7 +514,7 @@ int main() {
         //Verificar a captura
         capturação();
 
-        al_draw_textf(font, al_map_rgb(255, 255, 255), 10, 10, 0, "nerdola: (%d, %d)", nerdola.pos_x, nerdola.pos_y);
+        al_draw_textf(font, al_map_rgb(0, 0,0 ), 10, 10, 0, "nerdola: (%d, %d)", nerdola.pos_x, nerdola.pos_y);
 
         al_flip_display();
     }
