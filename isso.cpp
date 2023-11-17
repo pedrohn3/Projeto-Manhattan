@@ -27,7 +27,7 @@ ALLEGRO_FONT* font = NULL;
 ////////////////////////////////////////////
 //INDICE
 ////////////////////////////////////////////
-    
+   
 #define INDICE_ELEM_CLORO       0
 #define INDICE_ELEM_SODIO       1
 #define INDICE_ELEM_OXIGENIO    2
@@ -65,7 +65,7 @@ struct personagem nerdola;//Struct personagem
 elementos arrayElementos[SIZE_MAX_ELEMENTOS];
 
 
-//chama Função iniciar elemento
+//Chama Função iniciar elemento
 
 //Usado na camera
 float camera_x = 0;//atualiza camera x
@@ -94,12 +94,27 @@ int tam_map_max_y = 1882;//Tamanho maximo na vertical
 int num_rand_x = 0;//Numero aleatorio x
 int num_rand_y = 0;//Numero aleatorio y
 
+char infoAdicional[10];
+char textoCompleto[20];
+
 
 
 
 //**************************************
 // Funções
 //**************************************
+void num_rand(int num_cont) {
+    srand(time(NULL));
+    for (int i = 0; i < 7; i++) {
+        arrayElementos[i].ativo = true;
+    }
+    for (int indice = 0; indice < SIZE_MAX_ELEMENTOS; indice++) {
+        if (arrayElementos[indice].ativo == true) {
+            arrayElementos[indice].pos_x = rand() % (tam_map_max_x - arrayElementos[indice].largura);
+            arrayElementos[indice].pos_y = rand() % (tam_map_max_y - arrayElementos[indice].altura);
+        }
+    }
+}
 
 void iniciar_personagem() {
     //Nerdola e seus tamanhos
@@ -129,25 +144,25 @@ void iniciar_elementos() {
     arrayElementos[INDICE_ELEM_CLORO].bitmap = al_load_bitmap("./cloro.png");
     arrayElementos[INDICE_ELEM_CLORO].largura = 54;
     arrayElementos[INDICE_ELEM_CLORO].altura = 182;
-    arrayElementos[INDICE_ELEM_CLORO].pos_x = 300;
-    arrayElementos[INDICE_ELEM_CLORO].pos_y = 300;
+    arrayElementos[INDICE_ELEM_CLORO].pos_x = 0;
+    arrayElementos[INDICE_ELEM_CLORO].pos_y = 0;
     arrayElementos[INDICE_ELEM_CLORO].contador = 0;
     arrayElementos[INDICE_ELEM_CLORO].ativo = true;
     arrayElementos[INDICE_ELEM_CLORO].capturado = false;
     }
     //Cloro    
     
-    if(ini == 12 || ini == 0){
+    if(ini == 2 || ini == 0){
     //Inicia Elemento Sodio
     arrayElementos[INDICE_ELEM_SODIO].id = INDICE_ELEM_SODIO;
     memcpy((void*)arrayElementos[INDICE_ELEM_SODIO].nome, (void*)"Sodio", sizeof("Sodio"));
     arrayElementos[INDICE_ELEM_SODIO].bitmap = al_load_bitmap("./sodio.png");
     arrayElementos[INDICE_ELEM_SODIO].largura = 58;
     arrayElementos[INDICE_ELEM_SODIO].altura = 78;
-    arrayElementos[INDICE_ELEM_SODIO].pos_x = -500;
-    arrayElementos[INDICE_ELEM_SODIO].pos_y = -178;
+    arrayElementos[INDICE_ELEM_SODIO].pos_x = 0;
+    arrayElementos[INDICE_ELEM_SODIO].pos_y = 0;
     arrayElementos[INDICE_ELEM_SODIO].contador = 0;
-    arrayElementos[INDICE_ELEM_SODIO].ativo = false;
+    arrayElementos[INDICE_ELEM_SODIO].ativo = true;
     arrayElementos[INDICE_ELEM_SODIO].capturado = false;
     }
     //sodio
@@ -157,12 +172,12 @@ void iniciar_elementos() {
         arrayElementos[INDICE_ELEM_OXIGENIO].id = INDICE_ELEM_OXIGENIO;
         memcpy((void*)arrayElementos[INDICE_ELEM_OXIGENIO].nome, (void*)"OXIGENIO", sizeof("OXIGENIO"));
         arrayElementos[INDICE_ELEM_OXIGENIO].bitmap = al_load_bitmap("./cloro.png");
-        arrayElementos[INDICE_ELEM_OXIGENIO].largura = 0;
-        arrayElementos[INDICE_ELEM_OXIGENIO].altura = 0;
+        arrayElementos[INDICE_ELEM_OXIGENIO].largura = 50;
+        arrayElementos[INDICE_ELEM_OXIGENIO].altura = 50;
         arrayElementos[INDICE_ELEM_OXIGENIO].pos_x = 0;
         arrayElementos[INDICE_ELEM_OXIGENIO].pos_y = 0;
         arrayElementos[INDICE_ELEM_OXIGENIO].contador = 0;
-        arrayElementos[INDICE_ELEM_OXIGENIO].ativo = false;
+        arrayElementos[INDICE_ELEM_OXIGENIO].ativo = true;
         arrayElementos[INDICE_ELEM_OXIGENIO].capturado = false;
     }
     //Oxigênio
@@ -172,12 +187,12 @@ void iniciar_elementos() {
         arrayElementos[INDICE_ELEM_HIDROGENIO].id = INDICE_ELEM_HIDROGENIO;
         memcpy((void*)arrayElementos[INDICE_ELEM_HIDROGENIO].nome, (void*)"HIDROGENIO", sizeof("HIDROGENIO"));
         arrayElementos[INDICE_ELEM_HIDROGENIO].bitmap = al_load_bitmap("./cloro.png");
-        arrayElementos[INDICE_ELEM_HIDROGENIO].largura = 0;
-        arrayElementos[INDICE_ELEM_HIDROGENIO].altura = 0;
+        arrayElementos[INDICE_ELEM_HIDROGENIO].largura = 50;
+        arrayElementos[INDICE_ELEM_HIDROGENIO].altura = 50;
         arrayElementos[INDICE_ELEM_HIDROGENIO].pos_x = 0;
         arrayElementos[INDICE_ELEM_HIDROGENIO].pos_y = 0;
         arrayElementos[INDICE_ELEM_HIDROGENIO].contador = 0;
-        arrayElementos[INDICE_ELEM_HIDROGENIO].ativo = false;
+        arrayElementos[INDICE_ELEM_HIDROGENIO].ativo = true;
         arrayElementos[INDICE_ELEM_HIDROGENIO].capturado = false;
     }
     //HIDROGENIO
@@ -187,12 +202,12 @@ void iniciar_elementos() {
         arrayElementos[INDICE_ELEM_NITROGENIO].id = INDICE_ELEM_NITROGENIO;
         memcpy((void*)arrayElementos[INDICE_ELEM_NITROGENIO].nome, (void*)"NITROGENIO", sizeof("NITROGENIO"));
         arrayElementos[INDICE_ELEM_NITROGENIO].bitmap = al_load_bitmap("./cloro.png");
-        arrayElementos[INDICE_ELEM_NITROGENIO].largura = 0;
-        arrayElementos[INDICE_ELEM_NITROGENIO].altura = 0;
+        arrayElementos[INDICE_ELEM_NITROGENIO].largura = 50;
+        arrayElementos[INDICE_ELEM_NITROGENIO].altura = 50;
         arrayElementos[INDICE_ELEM_NITROGENIO].pos_x = 0;
         arrayElementos[INDICE_ELEM_NITROGENIO].pos_y = 0;
         arrayElementos[INDICE_ELEM_NITROGENIO].contador = 0;
-        arrayElementos[INDICE_ELEM_NITROGENIO].ativo = false;
+        arrayElementos[INDICE_ELEM_NITROGENIO].ativo = true;
         arrayElementos[INDICE_ELEM_NITROGENIO].capturado = false;
     }
     //NITROGENIO
@@ -202,12 +217,12 @@ void iniciar_elementos() {
         arrayElementos[INDICE_ELEM_COBRE].id = INDICE_ELEM_COBRE;
         memcpy((void*)arrayElementos[INDICE_ELEM_COBRE].nome, (void*)"COBRE", sizeof("COBRE"));
         arrayElementos[INDICE_ELEM_COBRE].bitmap = al_load_bitmap("./cloro.png");
-        arrayElementos[INDICE_ELEM_COBRE].largura = 0;
-        arrayElementos[INDICE_ELEM_COBRE].altura = 0;
+        arrayElementos[INDICE_ELEM_COBRE].largura = 50;
+        arrayElementos[INDICE_ELEM_COBRE].altura = 50;
         arrayElementos[INDICE_ELEM_COBRE].pos_x = 0;
         arrayElementos[INDICE_ELEM_COBRE].pos_y = 0;
         arrayElementos[INDICE_ELEM_COBRE].contador = 0;
-        arrayElementos[INDICE_ELEM_COBRE].ativo = false;
+        arrayElementos[INDICE_ELEM_COBRE].ativo = true;
         arrayElementos[INDICE_ELEM_COBRE].capturado = false;
     }
     //COBRE
@@ -217,12 +232,12 @@ void iniciar_elementos() {
         arrayElementos[INDICE_ELEM_ENXOFRE].id = INDICE_ELEM_ENXOFRE;
         memcpy((void*)arrayElementos[INDICE_ELEM_ENXOFRE].nome, (void*)"ENXOFRE", sizeof("ENXOFRE"));
         arrayElementos[INDICE_ELEM_ENXOFRE].bitmap = al_load_bitmap("./cloro.png");
-        arrayElementos[INDICE_ELEM_ENXOFRE].largura = 0;
-        arrayElementos[INDICE_ELEM_ENXOFRE].altura = 0;
+        arrayElementos[INDICE_ELEM_ENXOFRE].largura = 50;
+        arrayElementos[INDICE_ELEM_ENXOFRE].altura = 50;
         arrayElementos[INDICE_ELEM_ENXOFRE].pos_x = 0;
         arrayElementos[INDICE_ELEM_ENXOFRE].pos_y = 0;
         arrayElementos[INDICE_ELEM_ENXOFRE].contador = 0;
-        arrayElementos[INDICE_ELEM_ENXOFRE].ativo = false;
+        arrayElementos[INDICE_ELEM_ENXOFRE].ativo = true;
         arrayElementos[INDICE_ELEM_ENXOFRE].capturado = false;
     }
     //ENXOFRE
@@ -308,9 +323,7 @@ void capturação() {
             pos_element_y = arrayElementos[indice].pos_y;
             pos_element_y_mais_alt = arrayElementos[indice].pos_y + arrayElementos[indice].altura;
 
-            // Se algum ponto do quadrado do personagem estiver dentro do quadrado do elemento ?
-            // (persongem x + largura = pos_elem_x || pos_personagem_x = pos_x_elem + largura_elem)&& (personagem_pos_y + nerdola.altura = pos_elem_y || personagem_pos_y + nerdola.altura = pos_elem_y +altura_elem)
-            //   
+            // Se algum ponto do quadrado do personagem estiver dentro do quadrado do elemento  
             if (            
                 (((pos_character_x >= pos_element_x) && (pos_character_x <= pos_element_x_mais_larg)) ||
                 ((pos_character_x_mais_larg >= pos_element_x) && (pos_character_x_mais_larg <= pos_element_x_mais_larg))
@@ -319,9 +332,9 @@ void capturação() {
                 ((pos_character_y_mais_alt >= pos_element_y) && (pos_character_y_mais_alt <= pos_element_y_mais_alt))
                 )
                 )
-            {
-                arrayElementos[indice].ativo = false;
-                arrayElementos[indice].capturado = true;
+            {                
+                arrayElementos[indice].pos_x = rand() % (tam_map_max_x - arrayElementos[indice].largura);
+                arrayElementos[indice].pos_y = rand() % (tam_map_max_y - arrayElementos[indice].altura);
                 arrayElementos[indice].contador += 1;
             }
         }
@@ -380,27 +393,15 @@ void desenhar_cena(ALLEGRO_BITMAP* bg, ALLEGRO_BITMAP* sprite, personagem nerdol
             al_draw_bitmap(arrayElementos[INDICE_ELEM_CLORO].bitmap, arrayElementos[indice].pos_x - camera_x, arrayElementos[indice].pos_y - camera_y, 0);
         }
 
-        float pos_text_y = 50;
+        float pos_text_y = 20;
         for (int indice = 0; indice < SIZE_MAX_ELEMENTOS; indice++) {
             // Se o elemento esta capturado
-            if (arrayElementos[indice].capturado == true) {
-                al_draw_textf(font, al_map_rgb(0, 0, 0), 0, pos_text_y, 0, (const char*)arrayElementos[indice].nome);
-                pos_text_y = pos_text_y + 10;
-            }
+                snprintf(infoAdicional, sizeof(infoAdicional), " %d", arrayElementos[indice].contador);
+                snprintf(textoCompleto, sizeof(textoCompleto), "%s%s", arrayElementos[indice].nome, infoAdicional);
+                al_draw_textf(font, al_map_rgb(255, 0, 0), 10, pos_text_y + 10, 0, textoCompleto);
+                pos_text_y = pos_text_y + 10;            
         }
     }
-}
-
-void num_rand() {
-    srand(time(NULL));
-    for (int indice = 0; indice < SIZE_MAX_ELEMENTOS; indice ++) {
-        if (arrayElementos[indice].ativo == true) {
-            arrayElementos[indice].pos_x = rand() % tam_map_max_x + 1;
-            arrayElementos[indice].pos_y = rand() % tam_map_max_y + 1;
-        }
-    }
-
-
 }
 
 void destruir_elementos() {
@@ -438,9 +439,13 @@ int main() {
     al_register_event_source(event_queue, al_get_keyboard_event_source());
     al_start_timer(timer);
 
+    
+
     iniciar_personagem();
    
     iniciar_elementos();
+    
+    num_rand(0);
 
     //Loop
     while (true) {
