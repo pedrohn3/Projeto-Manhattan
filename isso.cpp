@@ -32,13 +32,13 @@ ALLEGRO_FONT* font = NULL;
 #define INDICE_ELEM_SODIO       1
 #define INDICE_ELEM_OXIGENIO    2
 #define INDICE_ELEM_HIDROGENIO  3
-#define INDICE_ELEM_NITROGENIO  4
-#define INDICE_ELEM_COBRE       5
+#define INDICE_ELEM_CARBONO     4
+#define INDICE_ELEM_NITORGENIO  5
 #define INDICE_ELEM_ENXOFRE     6 
 #define INDICE_ELEM_SAL         7
-#define INDICE_ELEM_BOMBA_HIDRO 8
+#define INDICE_ELEM_METANO      8
 #define INDICE_ELEM_AGUA        9
-#define INDICE_ELEM_FOGO        10
+#define INDICE_ELEM_AMONIA      10
 
 
 ////////////////////////////////////////////
@@ -49,13 +49,13 @@ ALLEGRO_FONT* font = NULL;
 #define ID_ELEM_SODIO       2
 #define ID_ELEM_OXIGENIO    3
 #define ID_ELEM_HIDROGENIO  4
-#define ID_ELEM_NITROGENIO  5
-#define ID_ELEM_COBRE       6
+#define ID_ELEM_CARBONO     5
+#define ID_ELEM_NITORGENIO  6
 #define ID_ELEM_ENXOFRE     7 
 #define ID_ELEM_SAL         8
-#define ID_ELEM_BOMBA_HIDRO 9
+#define ID_ELEM_METANO      9
 #define ID_ELEM_AGUA        10
-#define ID_ELEM_FOGO        11
+#define ID_ELEM_AMONIA      11
 
 //**************************************
 // Variaveis
@@ -64,8 +64,6 @@ struct personagem nerdola;//Struct personagem
 
 elementos arrayElementos[SIZE_MAX_ELEMENTOS]; 
 
-
-//Chama Função iniciar elemento
 
 //Usado na camera
 float camera_x = 0;//atualiza camera x
@@ -93,6 +91,8 @@ int tam_map_max_x = 1920;//Tamanho maximo na horizontal
 int tam_map_max_y = 1882;//Tamanho maximo na vertical
 int num_rand_x = 0;//Numero aleatorio x
 int num_rand_y = 0;//Numero aleatorio y
+
+int contador_pontos_todal = 0;//Contador de pontos 
 
 char infoAdicional[10];// Letras
 char textoCompleto[20];// Letras finais
@@ -135,9 +135,6 @@ void atualizar_camera() {
 
 void iniciar_elementos() {
 
-    srand(time(NULL));
-    int ini = 0;
-    if(ini == 1 || ini == 0){
     //Inicia Elemento cloro
     arrayElementos[INDICE_ELEM_CLORO].id = INDICE_ELEM_CLORO;
     memcpy((void*)arrayElementos[INDICE_ELEM_CLORO].nome, (void*)"Cloro", sizeof("Cloro"));
@@ -148,11 +145,9 @@ void iniciar_elementos() {
     arrayElementos[INDICE_ELEM_CLORO].pos_y = 0;
     arrayElementos[INDICE_ELEM_CLORO].contador = 0;
     arrayElementos[INDICE_ELEM_CLORO].ativo = true;
-    arrayElementos[INDICE_ELEM_CLORO].capturado = false;
-    }
-    //Cloro    
+    arrayElementos[INDICE_ELEM_CLORO].capturado = false;    
+    //Cloro    Check
     
-    if(ini == 2 || ini == 0){
     //Inicia Elemento Sodio
     arrayElementos[INDICE_ELEM_SODIO].id = INDICE_ELEM_SODIO;
     memcpy((void*)arrayElementos[INDICE_ELEM_SODIO].nome, (void*)"Sodio", sizeof("Sodio"));
@@ -164,13 +159,12 @@ void iniciar_elementos() {
     arrayElementos[INDICE_ELEM_SODIO].contador = 0;
     arrayElementos[INDICE_ELEM_SODIO].ativo = true;
     arrayElementos[INDICE_ELEM_SODIO].capturado = false;
-    }
-    //sodio
+    //sodio    Check
 
-    if (ini == 3 || ini == 0) {
+  
         //Inicia Elemento Oxigênio
         arrayElementos[INDICE_ELEM_OXIGENIO].id = INDICE_ELEM_OXIGENIO;
-        memcpy((void*)arrayElementos[INDICE_ELEM_OXIGENIO].nome, (void*)"OXIGENIO", sizeof("OXIGENIO"));
+        memcpy((void*)arrayElementos[INDICE_ELEM_OXIGENIO].nome, (void*)"Oxigenio", sizeof("Oxigenio"));
         arrayElementos[INDICE_ELEM_OXIGENIO].bitmap = al_load_bitmap("./cloro.png");
         arrayElementos[INDICE_ELEM_OXIGENIO].largura = 50;
         arrayElementos[INDICE_ELEM_OXIGENIO].altura = 50;
@@ -179,13 +173,13 @@ void iniciar_elementos() {
         arrayElementos[INDICE_ELEM_OXIGENIO].contador = 0;
         arrayElementos[INDICE_ELEM_OXIGENIO].ativo = true;
         arrayElementos[INDICE_ELEM_OXIGENIO].capturado = false;
-    }
-    //Oxigênio
+    
+    //Oxigênio  Check
 
-    if (ini == 4 || ini == 0) {
+ 
         //Inicia Elemento HIDROGENIO
         arrayElementos[INDICE_ELEM_HIDROGENIO].id = INDICE_ELEM_HIDROGENIO;
-        memcpy((void*)arrayElementos[INDICE_ELEM_HIDROGENIO].nome, (void*)"HIDROGENIO", sizeof("HIDROGENIO"));
+        memcpy((void*)arrayElementos[INDICE_ELEM_HIDROGENIO].nome, (void*)"Hidrogenio", sizeof("Hidrogenio"));
         arrayElementos[INDICE_ELEM_HIDROGENIO].bitmap = al_load_bitmap("./cloro.png");
         arrayElementos[INDICE_ELEM_HIDROGENIO].largura = 50;
         arrayElementos[INDICE_ELEM_HIDROGENIO].altura = 50;
@@ -193,44 +187,39 @@ void iniciar_elementos() {
         arrayElementos[INDICE_ELEM_HIDROGENIO].pos_y = 0;
         arrayElementos[INDICE_ELEM_HIDROGENIO].contador = 0;
         arrayElementos[INDICE_ELEM_HIDROGENIO].ativo = true;
-        arrayElementos[INDICE_ELEM_HIDROGENIO].capturado = false;
-    }
-    //HIDROGENIO
+        arrayElementos[INDICE_ELEM_HIDROGENIO].capturado = false;    
+    //HIDROGENIO    Check
 
-    if (ini == 5 || ini == 0) {
-        //Inicia Elemento NITROGENIO
-        arrayElementos[INDICE_ELEM_NITROGENIO].id = INDICE_ELEM_NITROGENIO;
-        memcpy((void*)arrayElementos[INDICE_ELEM_NITROGENIO].nome, (void*)"NITROGENIO", sizeof("NITROGENIO"));
-        arrayElementos[INDICE_ELEM_NITROGENIO].bitmap = al_load_bitmap("./cloro.png");
-        arrayElementos[INDICE_ELEM_NITROGENIO].largura = 50;
-        arrayElementos[INDICE_ELEM_NITROGENIO].altura = 50;
-        arrayElementos[INDICE_ELEM_NITROGENIO].pos_x = 0;
-        arrayElementos[INDICE_ELEM_NITROGENIO].pos_y = 0;
-        arrayElementos[INDICE_ELEM_NITROGENIO].contador = 0;
-        arrayElementos[INDICE_ELEM_NITROGENIO].ativo = true;
-        arrayElementos[INDICE_ELEM_NITROGENIO].capturado = false;
-    }
-    //NITROGENIO
+    
+        //Inicia Elemento CARBONO
+        arrayElementos[INDICE_ELEM_CARBONO].id = INDICE_ELEM_CARBONO;
+        memcpy((void*)arrayElementos[INDICE_ELEM_CARBONO].nome, (void*)"Carbono", sizeof("Carbono"));
+        arrayElementos[INDICE_ELEM_CARBONO].bitmap = al_load_bitmap("./cloro.png");
+        arrayElementos[INDICE_ELEM_CARBONO].largura = 50;
+        arrayElementos[INDICE_ELEM_CARBONO].altura = 50;
+        arrayElementos[INDICE_ELEM_CARBONO].pos_x = 0;
+        arrayElementos[INDICE_ELEM_CARBONO].pos_y = 0;
+        arrayElementos[INDICE_ELEM_CARBONO].contador = 0;
+        arrayElementos[INDICE_ELEM_CARBONO].ativo = true;
+        arrayElementos[INDICE_ELEM_CARBONO].capturado = false;
+    //CARBONO       Check
 
-    if (ini == 6 || ini == 0) {
-        //Inicia Elemento COBRE
-        arrayElementos[INDICE_ELEM_COBRE].id = INDICE_ELEM_COBRE;
-        memcpy((void*)arrayElementos[INDICE_ELEM_COBRE].nome, (void*)"COBRE", sizeof("COBRE"));
-        arrayElementos[INDICE_ELEM_COBRE].bitmap = al_load_bitmap("./cloro.png");
-        arrayElementos[INDICE_ELEM_COBRE].largura = 50;
-        arrayElementos[INDICE_ELEM_COBRE].altura = 50;
-        arrayElementos[INDICE_ELEM_COBRE].pos_x = 0;
-        arrayElementos[INDICE_ELEM_COBRE].pos_y = 0;
-        arrayElementos[INDICE_ELEM_COBRE].contador = 0;
-        arrayElementos[INDICE_ELEM_COBRE].ativo = true;
-        arrayElementos[INDICE_ELEM_COBRE].capturado = false;
-    }
-    //COBRE
+        //Inicia Elemento NITORGENIO
+        arrayElementos[INDICE_ELEM_NITORGENIO].id = INDICE_ELEM_NITORGENIO;
+        memcpy((void*)arrayElementos[INDICE_ELEM_NITORGENIO].nome, (void*)"Nitrogenio", sizeof("Nitrogenio"));
+        arrayElementos[INDICE_ELEM_NITORGENIO].bitmap = al_load_bitmap("./cloro.png");
+        arrayElementos[INDICE_ELEM_NITORGENIO].largura = 50;
+        arrayElementos[INDICE_ELEM_NITORGENIO].altura = 50;
+        arrayElementos[INDICE_ELEM_NITORGENIO].pos_x = 0;
+        arrayElementos[INDICE_ELEM_NITORGENIO].pos_y = 0;
+        arrayElementos[INDICE_ELEM_NITORGENIO].contador = 0;
+        arrayElementos[INDICE_ELEM_NITORGENIO].ativo = true;
+        arrayElementos[INDICE_ELEM_NITORGENIO].capturado = false;
+    //NITORGENIO     Check
 
-    if (ini == 7 || ini == 0) {
         //Inicia Elemento ENXOFRE
         arrayElementos[INDICE_ELEM_ENXOFRE].id = INDICE_ELEM_ENXOFRE;
-        memcpy((void*)arrayElementos[INDICE_ELEM_ENXOFRE].nome, (void*)"ENXOFRE", sizeof("ENXOFRE"));
+        memcpy((void*)arrayElementos[INDICE_ELEM_ENXOFRE].nome, (void*)"Enxofre", sizeof("Enxofre"));
         arrayElementos[INDICE_ELEM_ENXOFRE].bitmap = al_load_bitmap("./cloro.png");
         arrayElementos[INDICE_ELEM_ENXOFRE].largura = 50;
         arrayElementos[INDICE_ELEM_ENXOFRE].altura = 50;
@@ -239,13 +228,11 @@ void iniciar_elementos() {
         arrayElementos[INDICE_ELEM_ENXOFRE].contador = 0;
         arrayElementos[INDICE_ELEM_ENXOFRE].ativo = true;
         arrayElementos[INDICE_ELEM_ENXOFRE].capturado = false;
-    }
-    //ENXOFRE
+    //ENXOFRE       
 
-    if (ini == 8 || ini == 0) {
         //Inicia Elemento SAL
         arrayElementos[INDICE_ELEM_SAL].id = INDICE_ELEM_SAL;
-        memcpy((void*)arrayElementos[INDICE_ELEM_SAL].nome, (void*)"SAL", sizeof("SAL"));
+        memcpy((void*)arrayElementos[INDICE_ELEM_SAL].nome, (void*)"Sal", sizeof("Sal"));
         arrayElementos[INDICE_ELEM_SAL].bitmap = al_load_bitmap("./cloro.png");
         arrayElementos[INDICE_ELEM_SAL].largura = 0;
         arrayElementos[INDICE_ELEM_SAL].altura = 0;
@@ -254,25 +241,23 @@ void iniciar_elementos() {
         arrayElementos[INDICE_ELEM_SAL].contador = 0;
         arrayElementos[INDICE_ELEM_SAL].ativo = false;
         arrayElementos[INDICE_ELEM_SAL].capturado = false;
-    }
-    //SAL
+     //SAL      Check
 
-    if (ini == 9 || ini == 0) {
-        //Inicia Elemento BOMBA_HIDRO
-        arrayElementos[INDICE_ELEM_BOMBA_HIDRO].id = INDICE_ELEM_BOMBA_HIDRO;
-        memcpy((void*)arrayElementos[INDICE_ELEM_BOMBA_HIDRO].nome, (void*)"BOMBA_HIDRO", sizeof("BOMBA_HIDRO"));
-        arrayElementos[INDICE_ELEM_BOMBA_HIDRO].bitmap = al_load_bitmap("./cloro.png");
-        arrayElementos[INDICE_ELEM_BOMBA_HIDRO].largura = 0;
-        arrayElementos[INDICE_ELEM_BOMBA_HIDRO].altura = 0;
-        arrayElementos[INDICE_ELEM_BOMBA_HIDRO].pos_x = 0;
-        arrayElementos[INDICE_ELEM_BOMBA_HIDRO].pos_y = 0;
-        arrayElementos[INDICE_ELEM_BOMBA_HIDRO].contador = 0;
-        arrayElementos[INDICE_ELEM_BOMBA_HIDRO].ativo = false;
-        arrayElementos[INDICE_ELEM_BOMBA_HIDRO].capturado = false;
-    }
-    //BOMBA_HIDRO
 
-    if (ini == 10 || ini == 0) {
+        //Inicia Elemento METANO
+        arrayElementos[INDICE_ELEM_METANO].id = INDICE_ELEM_METANO;
+        memcpy((void*)arrayElementos[INDICE_ELEM_METANO].nome, (void*)"Metano", sizeof("Metano"));
+        arrayElementos[INDICE_ELEM_METANO].bitmap = al_load_bitmap("./cloro.png");
+        arrayElementos[INDICE_ELEM_METANO].largura = 0;
+        arrayElementos[INDICE_ELEM_METANO].altura = 0;
+        arrayElementos[INDICE_ELEM_METANO].pos_x = 0;
+        arrayElementos[INDICE_ELEM_METANO].pos_y = 0;
+        arrayElementos[INDICE_ELEM_METANO].contador = 0;
+        arrayElementos[INDICE_ELEM_METANO].ativo = false;
+        arrayElementos[INDICE_ELEM_METANO].capturado = false;
+    //METANO        Check
+
+
         //Inicia Elemento AGUA
         arrayElementos[INDICE_ELEM_AGUA].id = INDICE_ELEM_AGUA;
         memcpy((void*)arrayElementos[INDICE_ELEM_AGUA].nome, (void*)"AGUA", sizeof("AGUA"));
@@ -283,24 +268,21 @@ void iniciar_elementos() {
         arrayElementos[INDICE_ELEM_AGUA].pos_y = 0;
         arrayElementos[INDICE_ELEM_AGUA].contador = 0;
         arrayElementos[INDICE_ELEM_AGUA].ativo = false;
-        arrayElementos[INDICE_ELEM_AGUA].capturado = false;
-    }
-    //AGUA
+        arrayElementos[INDICE_ELEM_AGUA].capturado = false;    
+    //AGUA      Check
 
-    if (ini == 11 || ini == 0) {
-        //Inicia Elemento FOGO
-        arrayElementos[INDICE_ELEM_FOGO].id = INDICE_ELEM_FOGO;
-        memcpy((void*)arrayElementos[INDICE_ELEM_FOGO].nome, (void*)"FOGO", sizeof("FOGO"));
-        arrayElementos[INDICE_ELEM_FOGO].bitmap = al_load_bitmap("./cloro.png");
-        arrayElementos[INDICE_ELEM_FOGO].largura = 0;
-        arrayElementos[INDICE_ELEM_FOGO].altura = 0;
-        arrayElementos[INDICE_ELEM_FOGO].pos_x = 0;
-        arrayElementos[INDICE_ELEM_FOGO].pos_y = 0;
-        arrayElementos[INDICE_ELEM_FOGO].contador = 0;
-        arrayElementos[INDICE_ELEM_FOGO].ativo = false;
-        arrayElementos[INDICE_ELEM_FOGO].capturado = false;
-    }
-    //FOGO
+        //Inicia Elemento AMONIA
+        arrayElementos[INDICE_ELEM_AMONIA].id = INDICE_ELEM_AMONIA;
+        memcpy((void*)arrayElementos[INDICE_ELEM_AMONIA].nome, (void*)"Amonia", sizeof("Amonia"));
+        arrayElementos[INDICE_ELEM_AMONIA].bitmap = al_load_bitmap("./cloro.png");
+        arrayElementos[INDICE_ELEM_AMONIA].largura = 0;
+        arrayElementos[INDICE_ELEM_AMONIA].altura = 0;
+        arrayElementos[INDICE_ELEM_AMONIA].pos_x = 0;
+        arrayElementos[INDICE_ELEM_AMONIA].pos_y = 0;
+        arrayElementos[INDICE_ELEM_AMONIA].contador = 0;
+        arrayElementos[INDICE_ELEM_AMONIA].ativo = false;
+        arrayElementos[INDICE_ELEM_AMONIA].capturado = false;
+    //AMONIA
 }
 
 void capturação() {
@@ -354,19 +336,21 @@ void craft() {
     }
 
 
-    //Fogo
-    if ((arrayElementos[INDICE_ELEM_SODIO].capturado == true)
-        && (arrayElementos[INDICE_ELEM_CLORO].capturado == true)
-        && (1 == 1)) {
-
+    //AMONIA
+    if ((arrayElementos[INDICE_ELEM_HIDROGENIO].contador >= 3)
+        && (arrayElementos[INDICE_ELEM_NITORGENIO].contador >= 1)) {
+        arrayElementos[INDICE_ELEM_AMONIA].contador += 1;
+        arrayElementos[INDICE_ELEM_HIDROGENIO].contador -= 3;
+        arrayElementos[INDICE_ELEM_NITORGENIO].contador -= 1;
     }
 
 
-    //Bomba de Hidrogenio
-    if ((arrayElementos[INDICE_ELEM_SODIO].capturado == true)
-        && (arrayElementos[INDICE_ELEM_CLORO].capturado == true)
-        && (1 == 1)) {
-
+    //Metano
+    if ((arrayElementos[INDICE_ELEM_CARBONO].contador >= 1)
+        && (arrayElementos[INDICE_ELEM_HIDROGENIO].contador >= 4)) {
+        arrayElementos[INDICE_ELEM_METANO].contador += 1;
+        arrayElementos[INDICE_ELEM_CARBONO].contador -= 1;
+        arrayElementos[INDICE_ELEM_HIDROGENIO].contador -= 4;
     }
 
 
