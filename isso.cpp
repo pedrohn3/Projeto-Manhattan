@@ -62,7 +62,7 @@ ALLEGRO_FONT* font = NULL;
 //**************************************
 struct personagem nerdola;//Struct personagem
 
-elementos arrayElementos[SIZE_MAX_ELEMENTOS];
+elementos arrayElementos[SIZE_MAX_ELEMENTOS]; 
 
 
 //Chama Função iniciar elemento
@@ -94,8 +94,8 @@ int tam_map_max_y = 1882;//Tamanho maximo na vertical
 int num_rand_x = 0;//Numero aleatorio x
 int num_rand_y = 0;//Numero aleatorio y
 
-char infoAdicional[10];
-char textoCompleto[20];
+char infoAdicional[10];// Letras
+char textoCompleto[20];// Letras finais
 
 
 
@@ -103,7 +103,7 @@ char textoCompleto[20];
 //**************************************
 // Funções
 //**************************************
-void num_rand(int num_cont) {
+void num_rand() {
     srand(time(NULL));
     for (int i = 0; i < 7; i++) {
         arrayElementos[i].ativo = true;
@@ -346,26 +346,36 @@ void capturação() {
 void craft() {
 
     //Sal
-    if ((arrayElementos[INDICE_ELEM_SODIO].capturado == true) && (arrayElementos[INDICE_ELEM_CLORO].capturado == true)) {
-
+    if ((arrayElementos[INDICE_ELEM_SODIO].contador >= 1) 
+        && (arrayElementos[INDICE_ELEM_CLORO].contador >= 1)) {
+        arrayElementos[INDICE_ELEM_SAL].contador += 1;
+        arrayElementos[INDICE_ELEM_SODIO].contador -= 1;
+        arrayElementos[INDICE_ELEM_CLORO].contador -= 1;
     }
 
 
     //Fogo
-    if (tamanho_nerd_x == 1) {
+    if ((arrayElementos[INDICE_ELEM_SODIO].capturado == true)
+        && (arrayElementos[INDICE_ELEM_CLORO].capturado == true)
+        && (1 == 1)) {
 
     }
 
 
     //Bomba de Hidrogenio
-    if (tamanho_nerd_x == 1) {
+    if ((arrayElementos[INDICE_ELEM_SODIO].capturado == true)
+        && (arrayElementos[INDICE_ELEM_CLORO].capturado == true)
+        && (1 == 1)) {
 
     }
 
 
-    ///agua
-    if ((arrayElementos[INDICE_ELEM_OXIGENIO].capturado == true) && (arrayElementos[INDICE_ELEM_HIDROGENIO].capturado == true)) {
-
+    ///Agua
+    if ((arrayElementos[INDICE_ELEM_OXIGENIO].contador >= 1) 
+        && (arrayElementos[INDICE_ELEM_HIDROGENIO].contador >= 2)) {
+        arrayElementos[INDICE_ELEM_AGUA].contador += 1;
+        arrayElementos[INDICE_ELEM_OXIGENIO].contador -= 1;
+        arrayElementos[INDICE_ELEM_HIDROGENIO].contador -= 2;
     }
 
 
@@ -440,12 +450,19 @@ int main() {
     al_start_timer(timer);
 
     
+    //Inicia Personagem
 
     iniciar_personagem();
+
+    //Inicia Elementos
    
     iniciar_elementos();
+
+
+    //Numeros Aleatorios a todos
+    num_rand();
     
-    num_rand(0);
+    
 
     //Loop
     while (true) {
@@ -454,7 +471,14 @@ int main() {
 
         ALLEGRO_EVENT event;
         al_wait_for_event(event_queue, &event);
-        if(1 == 1){
+
+
+        //Se clicar no C irá fazer a função craft
+        if (event.keyboard.keycode == ALLEGRO_KEY_C) {
+            craft();
+        }
+
+
         if (event.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {
             break;
         }
@@ -511,7 +535,7 @@ int main() {
                 nerdola.frame -= 2;
             }
         };
-        }
+        
 
         //desenhar_cena(bg, sprite, nerdola);
         desenhar_cena(bg, sprite, nerdola, arrayElementos);
