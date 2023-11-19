@@ -68,7 +68,7 @@ elementos arrayElementos[SIZE_MAX_ELEMENTOS];
 //Usado na camera
 float camera_x = 0;//atualiza camera x
 float camera_y = 0;//atualiza camera y
-float zoom_map = 2;//Dá zoom
+float zoom_map = 4;//Dá zoom
 
 //X para função de capturar usar
 float pos_character_x = 0;
@@ -84,18 +84,19 @@ float pos_element_y_mais_alt = 0;
 //Usado para o personagem e os elementos
 int tamanho_map_x = 1000;//Tamanho do mapa x
 int tamanho_map_y = 600;//Tamanho do mapa y
+int tam_map_max_x = 2250;//Tamanho maximo na horizontal
+int tam_map_max_y = 2037;//Tamanho maximo na vertical
+
 int tamanho_nerd_x = 58;//Tamanho x do protagonista
 int tamanho_nerd_y = 63;//Tamanho y do protagonista
 
-int tam_map_max_x = 1920;//Tamanho maximo na horizontal
-int tam_map_max_y = 1882;//Tamanho maximo na vertical
 int num_rand_x = 0;//Numero aleatorio x
 int num_rand_y = 0;//Numero aleatorio y
 
-int contador_pontos_todal = 0;//Contador de pontos 
-
 char infoAdicional[10];// Letras
 char textoCompleto[20];// Letras finais
+
+int contador_pontos_todal;//Contador de pontos 
 
 
 
@@ -260,7 +261,7 @@ void iniciar_elementos() {
 
         //Inicia Elemento AGUA
         arrayElementos[INDICE_ELEM_AGUA].id = INDICE_ELEM_AGUA;
-        memcpy((void*)arrayElementos[INDICE_ELEM_AGUA].nome, (void*)"AGUA", sizeof("AGUA"));
+        memcpy((void*)arrayElementos[INDICE_ELEM_AGUA].nome, (void*)"Agua", sizeof("Agua"));
         arrayElementos[INDICE_ELEM_AGUA].bitmap = al_load_bitmap("./cloro.png");
         arrayElementos[INDICE_ELEM_AGUA].largura = 0;
         arrayElementos[INDICE_ELEM_AGUA].altura = 0;
@@ -318,6 +319,7 @@ void capturação() {
                 arrayElementos[indice].pos_x = rand() % (tam_map_max_x - arrayElementos[indice].largura);
                 arrayElementos[indice].pos_y = rand() % (tam_map_max_y - arrayElementos[indice].altura);
                 arrayElementos[indice].contador += 1;
+                contador_pontos_todal += 1;
             }
         }
     }
@@ -333,6 +335,7 @@ void craft() {
         arrayElementos[INDICE_ELEM_SAL].contador += 1;
         arrayElementos[INDICE_ELEM_SODIO].contador -= 1;
         arrayElementos[INDICE_ELEM_CLORO].contador -= 1;
+        contador_pontos_todal += 5;
     }
 
 
@@ -342,6 +345,7 @@ void craft() {
         arrayElementos[INDICE_ELEM_AMONIA].contador += 1;
         arrayElementos[INDICE_ELEM_HIDROGENIO].contador -= 3;
         arrayElementos[INDICE_ELEM_NITORGENIO].contador -= 1;
+        contador_pontos_todal += 15;
     }
 
 
@@ -351,6 +355,7 @@ void craft() {
         arrayElementos[INDICE_ELEM_METANO].contador += 1;
         arrayElementos[INDICE_ELEM_CARBONO].contador -= 1;
         arrayElementos[INDICE_ELEM_HIDROGENIO].contador -= 4;
+        contador_pontos_todal += 20;
     }
 
 
@@ -360,6 +365,7 @@ void craft() {
         arrayElementos[INDICE_ELEM_AGUA].contador += 1;
         arrayElementos[INDICE_ELEM_OXIGENIO].contador -= 1;
         arrayElementos[INDICE_ELEM_HIDROGENIO].contador -= 2;
+        contador_pontos_todal += 10;
     }
 
 
@@ -424,7 +430,7 @@ int main() {
     ALLEGRO_TIMER* timer = al_create_timer(1.0 / 20.0);
 
     ALLEGRO_BITMAP* sprite = al_load_bitmap("./nerdola.png");
-    ALLEGRO_BITMAP* bg = al_load_bitmap("./cena.png");
+    ALLEGRO_BITMAP* bg = al_load_bitmap("./cenasss.png");
 
 
     ALLEGRO_EVENT_QUEUE* event_queue = al_create_event_queue();
@@ -433,6 +439,8 @@ int main() {
     al_register_event_source(event_queue, al_get_keyboard_event_source());
     al_start_timer(timer);
 
+    //Zera o contador para zera, para outro player jogar
+    contador_pontos_todal = 0;
     
     //Inicia Personagem
 
@@ -527,7 +535,7 @@ int main() {
         //Verificar a captura
         capturação();
 
-        al_draw_textf(font, al_map_rgb(0, 0,0 ), 10, 10, 0, "nerdola: (%d, %d)", nerdola.pos_x, nerdola.pos_y);
+        al_draw_textf(font, al_map_rgb(0, 0,255 ), 10, 10, 0, "nerdola: (%d, %d)", nerdola.pos_x, nerdola.pos_y);
 
         al_flip_display();
     }
