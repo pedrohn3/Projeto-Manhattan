@@ -140,8 +140,8 @@ void iniciar_elementos() {
     arrayElementos[INDICE_ELEM_CLORO].id = INDICE_ELEM_CLORO;
     memcpy((void*)arrayElementos[INDICE_ELEM_CLORO].nome, (void*)"Cloro", sizeof("Cloro"));
     arrayElementos[INDICE_ELEM_CLORO].bitmap = al_load_bitmap("./cloro.png");
-    arrayElementos[INDICE_ELEM_CLORO].largura = 54;
-    arrayElementos[INDICE_ELEM_CLORO].altura = 182;
+    arrayElementos[INDICE_ELEM_CLORO].largura = 50;
+    arrayElementos[INDICE_ELEM_CLORO].altura = 50;
     arrayElementos[INDICE_ELEM_CLORO].pos_x = 0;
     arrayElementos[INDICE_ELEM_CLORO].pos_y = 0;
     arrayElementos[INDICE_ELEM_CLORO].contador = 0;
@@ -153,8 +153,8 @@ void iniciar_elementos() {
     arrayElementos[INDICE_ELEM_SODIO].id = INDICE_ELEM_SODIO;
     memcpy((void*)arrayElementos[INDICE_ELEM_SODIO].nome, (void*)"Sodio", sizeof("Sodio"));
     arrayElementos[INDICE_ELEM_SODIO].bitmap = al_load_bitmap("./sodio.png");
-    arrayElementos[INDICE_ELEM_SODIO].largura = 58;
-    arrayElementos[INDICE_ELEM_SODIO].altura = 78;
+    arrayElementos[INDICE_ELEM_SODIO].largura = 50;
+    arrayElementos[INDICE_ELEM_SODIO].altura = 50;
     arrayElementos[INDICE_ELEM_SODIO].pos_x = 0;
     arrayElementos[INDICE_ELEM_SODIO].pos_y = 0;
     arrayElementos[INDICE_ELEM_SODIO].contador = 0;
@@ -166,7 +166,7 @@ void iniciar_elementos() {
         //Inicia Elemento Oxigênio
         arrayElementos[INDICE_ELEM_OXIGENIO].id = INDICE_ELEM_OXIGENIO;
         memcpy((void*)arrayElementos[INDICE_ELEM_OXIGENIO].nome, (void*)"Oxigenio", sizeof("Oxigenio"));
-        arrayElementos[INDICE_ELEM_OXIGENIO].bitmap = al_load_bitmap("./cloro.png");
+        arrayElementos[INDICE_ELEM_OXIGENIO].bitmap = al_load_bitmap("./oxigenio.png");
         arrayElementos[INDICE_ELEM_OXIGENIO].largura = 50;
         arrayElementos[INDICE_ELEM_OXIGENIO].altura = 50;
         arrayElementos[INDICE_ELEM_OXIGENIO].pos_x = 0;
@@ -181,7 +181,7 @@ void iniciar_elementos() {
         //Inicia Elemento HIDROGENIO
         arrayElementos[INDICE_ELEM_HIDROGENIO].id = INDICE_ELEM_HIDROGENIO;
         memcpy((void*)arrayElementos[INDICE_ELEM_HIDROGENIO].nome, (void*)"Hidrogenio", sizeof("Hidrogenio"));
-        arrayElementos[INDICE_ELEM_HIDROGENIO].bitmap = al_load_bitmap("./cloro.png");
+        arrayElementos[INDICE_ELEM_HIDROGENIO].bitmap = al_load_bitmap("./hidrogenio.png");
         arrayElementos[INDICE_ELEM_HIDROGENIO].largura = 50;
         arrayElementos[INDICE_ELEM_HIDROGENIO].altura = 50;
         arrayElementos[INDICE_ELEM_HIDROGENIO].pos_x = 0;
@@ -195,7 +195,7 @@ void iniciar_elementos() {
         //Inicia Elemento CARBONO
         arrayElementos[INDICE_ELEM_CARBONO].id = INDICE_ELEM_CARBONO;
         memcpy((void*)arrayElementos[INDICE_ELEM_CARBONO].nome, (void*)"Carbono", sizeof("Carbono"));
-        arrayElementos[INDICE_ELEM_CARBONO].bitmap = al_load_bitmap("./cloro.png");
+        arrayElementos[INDICE_ELEM_CARBONO].bitmap = al_load_bitmap("./carbono.png");
         arrayElementos[INDICE_ELEM_CARBONO].largura = 50;
         arrayElementos[INDICE_ELEM_CARBONO].altura = 50;
         arrayElementos[INDICE_ELEM_CARBONO].pos_x = 0;
@@ -208,7 +208,7 @@ void iniciar_elementos() {
         //Inicia Elemento NITORGENIO
         arrayElementos[INDICE_ELEM_NITORGENIO].id = INDICE_ELEM_NITORGENIO;
         memcpy((void*)arrayElementos[INDICE_ELEM_NITORGENIO].nome, (void*)"Nitrogenio", sizeof("Nitrogenio"));
-        arrayElementos[INDICE_ELEM_NITORGENIO].bitmap = al_load_bitmap("./cloro.png");
+        arrayElementos[INDICE_ELEM_NITORGENIO].bitmap = al_load_bitmap("./nitrogenio.png");
         arrayElementos[INDICE_ELEM_NITORGENIO].largura = 50;
         arrayElementos[INDICE_ELEM_NITORGENIO].altura = 50;
         arrayElementos[INDICE_ELEM_NITORGENIO].pos_x = 0;
@@ -221,7 +221,7 @@ void iniciar_elementos() {
         //Inicia Elemento ENXOFRE
         arrayElementos[INDICE_ELEM_ENXOFRE].id = INDICE_ELEM_ENXOFRE;
         memcpy((void*)arrayElementos[INDICE_ELEM_ENXOFRE].nome, (void*)"Enxofre", sizeof("Enxofre"));
-        arrayElementos[INDICE_ELEM_ENXOFRE].bitmap = al_load_bitmap("./cloro.png");
+        arrayElementos[INDICE_ELEM_ENXOFRE].bitmap = al_load_bitmap("./enxofre.png");
         arrayElementos[INDICE_ELEM_ENXOFRE].largura = 50;
         arrayElementos[INDICE_ELEM_ENXOFRE].altura = 50;
         arrayElementos[INDICE_ELEM_ENXOFRE].pos_x = 0;
@@ -234,7 +234,7 @@ void iniciar_elementos() {
         //Inicia Elemento SAL
         arrayElementos[INDICE_ELEM_SAL].id = INDICE_ELEM_SAL;
         memcpy((void*)arrayElementos[INDICE_ELEM_SAL].nome, (void*)"Sal", sizeof("Sal"));
-        arrayElementos[INDICE_ELEM_SAL].bitmap = al_load_bitmap("./cloro.png");
+        arrayElementos[INDICE_ELEM_SAL].bitmap = al_load_bitmap("./enxofre.png");
         arrayElementos[INDICE_ELEM_SAL].largura = 0;
         arrayElementos[INDICE_ELEM_SAL].altura = 0;
         arrayElementos[INDICE_ELEM_SAL].pos_x = 0;
@@ -248,7 +248,7 @@ void iniciar_elementos() {
         //Inicia Elemento METANO
         arrayElementos[INDICE_ELEM_METANO].id = INDICE_ELEM_METANO;
         memcpy((void*)arrayElementos[INDICE_ELEM_METANO].nome, (void*)"Metano", sizeof("Metano"));
-        arrayElementos[INDICE_ELEM_METANO].bitmap = al_load_bitmap("./cloro.png");
+        arrayElementos[INDICE_ELEM_METANO].bitmap = al_load_bitmap("./enxofre.png");
         arrayElementos[INDICE_ELEM_METANO].largura = 0;
         arrayElementos[INDICE_ELEM_METANO].altura = 0;
         arrayElementos[INDICE_ELEM_METANO].pos_x = 0;
@@ -262,7 +262,7 @@ void iniciar_elementos() {
         //Inicia Elemento AGUA
         arrayElementos[INDICE_ELEM_AGUA].id = INDICE_ELEM_AGUA;
         memcpy((void*)arrayElementos[INDICE_ELEM_AGUA].nome, (void*)"Agua", sizeof("Agua"));
-        arrayElementos[INDICE_ELEM_AGUA].bitmap = al_load_bitmap("./cloro.png");
+        arrayElementos[INDICE_ELEM_AGUA].bitmap = al_load_bitmap("./enxofre.png");
         arrayElementos[INDICE_ELEM_AGUA].largura = 0;
         arrayElementos[INDICE_ELEM_AGUA].altura = 0;
         arrayElementos[INDICE_ELEM_AGUA].pos_x = 0;
@@ -390,7 +390,7 @@ void desenhar_cena(ALLEGRO_BITMAP* bg, ALLEGRO_BITMAP* sprite, personagem nerdol
     //desenha elementos
     for (int indice = 0; indice < SIZE_MAX_ELEMENTOS; indice++) {
         if (arrayElementos[indice].ativo == true) {
-            al_draw_bitmap(arrayElementos[INDICE_ELEM_CLORO].bitmap, arrayElementos[indice].pos_x - camera_x, arrayElementos[indice].pos_y - camera_y, 0);
+            al_draw_bitmap(arrayElementos[indice].bitmap, arrayElementos[indice].pos_x - camera_x, arrayElementos[indice].pos_y - camera_y, 0);
         }
 
         float pos_text_y = 20;
